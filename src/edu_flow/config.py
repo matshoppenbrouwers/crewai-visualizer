@@ -2,11 +2,12 @@ import os
 
 LLM_CONFIGS = {
     "openai": {
-        "model": "gpt-4o-mini",
+        "model": "gpt-3.5-turbo",
+        #"model": "gpt-4o-mini",
         "api_key": os.getenv('OPENAI_API_KEY')
     },
     "groq": {
-        "model": "groq/llama3-groq-70b-8192-tool-use-preview", 
+        "model": "mixtral-8x7b-32768",
         "api_key": os.getenv('GROQ_API_KEY')
     },
     "anthropic": {
@@ -15,9 +16,9 @@ LLM_CONFIGS = {
     }
 }
 
-LLM_CONFIG = LLM_CONFIGS["openai"] # Change this to switch between LLMs
+LLM_CONFIG = LLM_CONFIGS["openai"]
 
 EDU_FLOW_INPUT_VARIABLES = {
-    "audience_level": "intermediate",
-    "topic": "Automated reasoning"
+    "audience_level": "advanced",
+    "topic": "Multi-agent systems"
 } 

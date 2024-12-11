@@ -54,3 +54,18 @@ For support, questions, or feedback regarding the Edu Crew or crewAI.
 - [Chat with our docs](https://chatg.pt/DWjSBZn)
 
 Let's create wonders together with the power and simplicity of crewAI.
+
+## Running the Visualizer
+
+The project now includes a visual interface for monitoring the CrewAI flow. When you run:
+
+```bash
+crewai run
+```
+
+This will automatically:
+1. Start the visualization frontend (Next.js server)
+2. Start the WebSocket server for real-time updates
+3. Run the CrewAI flow
+
+The visualization will be available at http://localhost:3000

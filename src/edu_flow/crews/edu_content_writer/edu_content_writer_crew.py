@@ -3,6 +3,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 import os
 from src.edu_flow.config import EDU_FLOW_INPUT_VARIABLES
+from src.edu_flow.websocket_server import send_update
 
 # Uncomment the following line to use an example of a custom tool
 # from edu_content_writer.tools.custom_tool import MyCustomTool
@@ -75,10 +76,19 @@ class EduContentWriterCrew():
 	@crew
 	def crew(self) -> Crew:
 		"""Creates the EduContentWriter crew"""
-		return Crew(
-			agents=self.agents, # Automatically created by the @agent decorator
-			tasks=self.tasks, # Automatically created by the @task decorator
+		send_update("EduContentWriterCrew", "Starting content generation phase...")
+		
+		crew = Crew(
+			agents=self.agents,
+			tasks=self.tasks,
 			process=Process.sequential,
 			verbose=True,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
+		
+		# Add status updates for specific tasks
+		send_update("ContentWriter", "Writer beginning content creation...")
+		send_update("Editor", "Editor reviewing and refining content...")
+		send_update("QualityReviewer", "Final quality review in progress...")
+		send_update("SaveToMarkdown", "Saving final content to markdown...")
+		
+		return crew
